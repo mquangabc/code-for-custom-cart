@@ -1,5 +1,5 @@
 window.OpusNoATC = true;
-window.OpusApiCompareAtPrice = ["url"];
+window.OpusApiCompareAtPrice = true;
 
 (function (ns, fetch) {
   ns.fetch = function() {
