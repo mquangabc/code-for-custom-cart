@@ -60,3 +60,24 @@ window.fetch = async (...args) => {
   return response;
 };
     </script>
+
+
+
+       
+// another way 
+(function (ns, fetch) {
+  ns.fetch = function() {
+    const response = fetch.apply(this, arguments);
+    response.then(res => {
+      const url = new URL(res.url);
+      if (res.url.includes(`${window.location.origin}/cart/add`)) {
+        const params = url.searchParams;
+        const isOpus = params.get("opus");
+        if(isOpus) return;
+
+        window?.opusOpen();
+      }
+    });
+    return response
+  }
+}(window, window.fetch))
