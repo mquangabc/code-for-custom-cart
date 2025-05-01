@@ -1,12 +1,11 @@
 window.OpusNoATC = true;
-window.OpusApiCompareAtPrice = true;
+window?.OpusSetByVariantCompareAtPrice?.();
 
 (function (ns, fetch) {
   ns.fetch = function() {
     const response = fetch.apply(this, arguments);
     response.then(res => {
-      if (`${window.location.origin}/cart/add.js`
-      	.includes(res.url)) {
+      if (res.url.includes(`cart/add`) && res.ok) {
         	if(typeof window.opusOpen === "function") window.opusOpen();
       }
     });
