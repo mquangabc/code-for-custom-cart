@@ -70,11 +70,7 @@ window.fetch = async (...args) => {
     const response = fetch.apply(this, arguments);
     response.then(res => {
       const url = new URL(res.url);
-      if (res.url.includes(`${window.location.origin}/cart/add`)) {
-        const params = url.searchParams;
-        const isOpus = params.get("opus");
-        if(isOpus) return;
-
+      if (res.url.includes(`/cart/add`)) {
         window?.opusOpen();
       }
     });
